@@ -14,13 +14,16 @@ def main(pagina):
     chat = ft.Column()
 
 
-    def env_msg_tunel(mensagem):
+    async def env_msg_tunel(mensagem):
+     try:
         print(mensagem)
         # add mssg chat
         texto_mensagem = ft.Text(mensagem)
         chat.controls.append(texto_mensagem)
         #
         pagina.update()
+     except Exception as e:
+      print(f"Error w socket or {e}")
 
     pagina.pubsub.subscribe(env_msg_tunel)
 
